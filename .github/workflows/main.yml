@@ -39,7 +39,7 @@ jobs:
       uses: coreywebber/setup-sqlpackage@v1.0.0
       with:
         vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\'
-        
+        sql-version: 14
     - name: Restore the database
       run: |
         sqlpackage
