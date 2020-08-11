@@ -43,8 +43,6 @@ jobs:
     - name: Restore the database
       shell: pwsh
       run: |
-        sqlpackage /Action:Publish /SourceFile:"${{github.workspace}}\pul.dacpac" /tsn:"GANGAVALI\SQLEXPRESS" /tdn:parts /su:akshay /sp:Welcome@1234
-#        "C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe"
-        
-    
+        "C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe /Action:Publish /SourceFile:"${{github.workspace}}\pul.dacpac" /tsn:"GANGAVALI\SQLEXPRESS" /tdn:parts /su:akshay /sp:Welcome@1234"
+
         
