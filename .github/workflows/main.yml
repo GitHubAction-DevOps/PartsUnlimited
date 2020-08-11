@@ -37,7 +37,9 @@ jobs:
     steps:
     - name: setup-sqlpackage
       uses: coreywebber/setup-sqlpackage@v1.0.0
-
+      with:
+        vswhere-path: "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe"
+       
     - name: Restore the database
       run: |
         sqlpackage
