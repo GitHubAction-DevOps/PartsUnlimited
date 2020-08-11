@@ -35,6 +35,9 @@ jobs:
   Database:
     runs-on: db
     steps:
+    - name: setup-sqlpackage
+      uses: coreywebber/setup-sqlpackage@v1.0.0
+
     - name: Restore the database
       run: |
         sqlpackage
