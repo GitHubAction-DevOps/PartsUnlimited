@@ -48,6 +48,9 @@ jobs:
   AzureDB:
     runs-on: windows-latest
     steps:
+    - name: List files
+      shell: powershell
+      run: ll ${{github.workspace}}
     - name: Azure Login
       uses: Azure/login@v1
       with:
