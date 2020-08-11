@@ -37,6 +37,7 @@ jobs:
     steps:
     - name: Restore the database
       run: |
-        sqlpackage /Action:Publish /SourceFile:"${{github.workspace}}\pul.dacpac" /tsn:"GANGAVALI\SQLEXPRESS" /tdn:parts /su:akshay /sp:Welcome@1234
+        sqlpackage
+#        sqlpackage /Action:Publish /SourceFile:"${{github.workspace}}\pul.dacpac" /tsn:"GANGAVALI\SQLEXPRESS" /tdn:parts /su:akshay /sp:Welcome@1234
     
         
