@@ -42,7 +42,7 @@ jobs:
 #        sql-version: 14
     - name: Restore the database
       run: |
-        '"C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe"' /Action:Publish /SourceFile:"${{github.workspace}}\pul.dacpac" /tsn:"GANGAVALI\SQLEXPRESS" /tdn:partsunl /su:akshay /sp:Welcome@1234
+        " & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:"${{github.workspace}}\pul.dacpac" /tsn:"GANGAVALI\SQLEXPRESS" /tdn:partsunl /su:akshay /sp:Welcome@1234"
 #        C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe /Action:Publish /SourceFile:'${{github.workspace}}\pul.dacpac' /tsn:"GANGAVALI\SQLEXPRESS" /tdn:partsunl /su:akshay /sp:Welcome@1234
 
         
