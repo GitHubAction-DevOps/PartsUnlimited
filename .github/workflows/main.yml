@@ -41,6 +41,6 @@ jobs:
 #        vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\'
 #        sql-version: 14
      - name: Restore the database
-       run: sqlpackage
+       run: |
          " & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\pul.dacpac /tsn:GANGAVALI\SQLEXPRESS /tdn:partsunlimited /su:akshay /sp:Welcome@1234"
         
