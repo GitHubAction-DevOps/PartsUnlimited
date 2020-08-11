@@ -48,6 +48,8 @@ jobs:
   AzureDB:
     runs-on: windows-latest
     steps:
+    - name: Checkout the source code
+      uses: actions/checkout@v2
     - name: List files
       shell: powershell
       run: ls ${{github.workspace}}
