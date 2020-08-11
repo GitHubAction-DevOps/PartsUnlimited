@@ -32,15 +32,33 @@ jobs:
         name: PartsUnlimited
         path: ${{github.workspace}}\stagingdir
   
-  Database:
-    runs-on: db
-    steps:
+#  Database:
+#    runs-on: db
+#    steps:
 #    - name: setup-sqlpackage
 #      uses: coreywebber/setup-sqlpackage@v1.0.0
 #      with:
 #        vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\'
 #        sql-version: 14
-     - name: Restore the database
-       run: |
-         " & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\pul.dacpac /tsn:GANGAVALI\SQLEXPRESS /tdn:partsunlimited /su:akshay /sp:Welcome@1234"
+#     - name: Restore the database
+#       run: |
+#         " & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\pul.dacpac /tsn:GANGAVALI\SQLEXPRESS /tdn:partsunlimited /su:akshay /sp:Welcome@1234"
         
+  AzureDB:
+    runs-on: windows-latest
+    steps:
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.azure_sql }}
+   
+    - name: Azure SQL Deploy
+      uses: Azure/sql-action@v1
+      with:
+        server-name: parts.database.windows.net
+        connection-string: ${{ secrets.connection_str }}
+        dacpac-package: ${{github.workspace}}\pul.dacpac
+        arguments: /Action:Publish
+
+    
+   
