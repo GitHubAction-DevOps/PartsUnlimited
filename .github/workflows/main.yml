@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ develp ]
+    branches: [ master ]
 
 env:
   server_name: GANGAVALI\SQLEXPRESS
@@ -43,11 +43,6 @@ jobs:
     steps:
     - name: Checkout the source code
       uses: actions/checkout@v2    
-#    - name: setup-sqlpackage
-#      uses: coreywebber/setup-sqlpackage@v1.0.0
-#      with:
-#        vswhere-path: 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\'
-#        sql-version: 14
     - name: Restore the database
       run: |
          & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\pul.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
