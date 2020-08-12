@@ -44,7 +44,7 @@ jobs:
 #        sql-version: 14
     - name: Restore the database
       run: |
-         "'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\pul.dacpac /tsn:GANGAVALI\SQLEXPRESS /tdn:partsunlimited /su:akshay /sp:Welcome@1234"
+         "'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Import /SourceFile:${{github.workspace}}\pul.dacpac /tsn:GANGAVALI\SQLEXPRESS /tdn:partsunlimited /su:akshay /sp:Welcome@1234"
 
 
   AzureDB:
@@ -62,12 +62,22 @@ jobs:
       with:
         creds: ${{ secrets.azure_sql }}
    
-    - name: Azure SQL Deploy
-      uses: Azure/sql-action@v1
-      with:
-        server-name: parts.database.windows.net
-        connection-string: ${{ secrets.connection_str }}
-        dacpac-package: ${{github.workspace}}\pul.dacpac
+#    - name: Azure SQL Deploy
+#      uses: Azure/sql-action@v1
+#      with:
+#        server-name: parts.database.windows.net
+#        connection-string: ${{ secrets.connection_str }}
+#        dacpac-package: ${{github.workspace}}\pul.dacpac
 
-    
+  AzureAQL:
+    runs-on: windows-latest
+    steps: 
+    - name: Checkout the source code
+      uses: actions/checkout@v2
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.azure_sql }}     
+
+        
    
