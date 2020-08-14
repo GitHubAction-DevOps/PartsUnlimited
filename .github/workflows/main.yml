@@ -50,6 +50,7 @@ jobs:
   deploy:
     name: DEPLOY TO AZURE WEB APP
     runs-on: windows-latest
+    needs: [build]
     steps:
     - name: Download Build Artifact
       uses: actions/download-artifact@v2
