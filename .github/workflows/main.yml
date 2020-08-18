@@ -51,7 +51,9 @@ jobs:
       with:
         name: PartsUnlimited
         path: ${{github.workspace}}    
-  
+    - name: Extract Artifact
+      run: expand-archive -path '*.zip' -destinationpath '.\webapp'
+      shell: pwsh
  # deploy:
  #   name: DEPLOY TO AZURE WEB APP
  #   runs-on: windows-latest
