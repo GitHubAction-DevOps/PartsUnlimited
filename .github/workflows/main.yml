@@ -1,4 +1,4 @@
-## This is a basic workflow to help you get started with Actions
+### This is a basic workflow to help you get started with Actions
 #         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
 name: CI
 
