@@ -1,12 +1,12 @@
 ## This is a basic workflow to help you get started with Actions
-
+#         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
 name: CI
 
 ## Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-    branches: [ master1 ]
+    branches: [ master ]
 
 env:
   server_name: GANGAVALI\SQLEXPRESS
@@ -53,12 +53,12 @@ jobs:
       with:
         name: artifacts
         path: ${{github.workspace}}
- #   - name: Restore the database
- #     run: |
- #        & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
+    - name: Restore the database
+      run: |
+         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Import /SourceFile:${{github.workspace}}\partsunlimited.bacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
     
-#    - name: Extract Artifact
-#      run: expand-archive -path '*.zip' -destinationpath '.\webapp'
+    - name: Extract Artifact
+      run: expand-archive -path ${{github.workspace}}\*.zip -destinationpath '.\webapp'
 #      shell: pwsh
  # deploy:
  #   name: DEPLOY TO AZURE WEB APP
