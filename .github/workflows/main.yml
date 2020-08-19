@@ -42,16 +42,16 @@ jobs:
           ${{github.workspace}}\stagingdir
           ${{github.workspace}}\*.dacpac
   
- # Database:
- #   runs-on: db
- #   steps:
- #   - name: Create Dir
- #     run : New-Item -Path ${{github.workspace}}\drop -ItemType Directory
- #   - name: Download Build Artifact
- #     uses: actions/download-artifact@v2
- #     with:
- #       name: PartsUnlimited
- #       path: ${{github.workspace}}\drop
+  Database:
+    runs-on: db
+    steps:
+    - name: Create Dir
+      run : New-Item -Path ${{github.workspace}}\drop -ItemType Directory
+    - name: Download Build Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: PartsUnlimited
+        path: ${{github.workspace}}\drop
  #   - name: Restore the database
  #     run: |
  #        & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\drop\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
