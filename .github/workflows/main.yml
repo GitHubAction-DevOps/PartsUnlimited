@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@2.1.0
       with:  
         name: PartsUnlimited
-        path: ${{github.workspace}}\stagingdir
+        path: ${{github.workspace}}\stagingdir\*.zip
   
   Database:
     runs-on: db
