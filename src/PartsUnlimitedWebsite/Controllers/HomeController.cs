@@ -37,7 +37,7 @@ namespace PartsUnlimited.Controllers
                 MemoryCache.Default.Add("newarrivals", newProducts, new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.UtcNow.AddMinutes(10) });
             }
 
-            var viewModel = new HomeViewModel
+            var viewModel = new Product
             {
                 NewProducts = newProducts,
                 TopSellingProducts = topSellingProducts,
