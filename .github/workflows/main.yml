@@ -46,8 +46,10 @@ jobs:
     runs-on: db
     needs: [build]
     steps:
-#    - name: Create Dir
-#      run : New-Item -Path ${{github.workspace}}\drop -ItemType Directory
+    - name: list
+      run : ls ${{github.workspace}}
+    - name: list1
+      run : ls ${{github.workspace}}\stagingdir
     - name: Download Build Artifact
       uses: actions/download-artifact@v2
       with:
@@ -55,7 +57,7 @@ jobs:
         path: ${{github.workspace}}
     - name: Restore the database
       run: |
-         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Import /SourceFile:${{github.workspace}}\partsunlimited.bacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
+         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Import /sf:${{github.workspace}}\partsunlimited.bacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /tu:${{env.db_user}} /tp:${{ secrets.db_password }}
     
     - name: Extract Artifact
       run: expand-archive -path ${{github.workspace}}\*.zip -destinationpath '.\webapp'
