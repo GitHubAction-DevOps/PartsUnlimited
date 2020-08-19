@@ -34,25 +34,28 @@ jobs:
     
     - name: list files
       run : ls ${{github.workspace}}\stagingdir
-#    - name: Upload Build Artifacts
-#      uses: actions/upload-artifact@2.1.0
-#      with:  
-#        name: PartsUnlimited
-#        path: ${{github.workspace}}\stagingdir\*.zip
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@2.1.0
+      with:  
+        name: PartsUnlimited
+        path: |
+          ${{github.workspace}}\stagingdir
+          ${{github.workspace}}\*.dacpac
   
-#  Database:
-#    runs-on: db
-#    steps:
-#    - name: Checkout the source code
-#      uses: actions/checkout@v2    
-#    - name: Restore the database
-#      run: |
-#         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
-#    - name: Download Build Artifact
-#      uses: actions/download-artifact@v2
-#      with:
-#        name: PartsUnlimited
-#        path: ${{github.workspace}}    
+ # Database:
+ #   runs-on: db
+ #   steps:
+ #   - name: Create Dir
+ #     run : New-Item -Path ${{github.workspace}}\drop -ItemType Directory
+ #   - name: Download Build Artifact
+ #     uses: actions/download-artifact@v2
+ #     with:
+ #       name: PartsUnlimited
+ #       path: ${{github.workspace}}\drop
+ #   - name: Restore the database
+ #     run: |
+ #        & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\drop\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
+    
 #    - name: Extract Artifact
 #      run: expand-archive -path '*.zip' -destinationpath '.\webapp'
 #      shell: pwsh
