@@ -37,7 +37,7 @@ jobs:
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@2.1.0
       with:  
-        name: PartsUnlimited
+        name: artifacts
         path: |
           ${{github.workspace}}\stagingdir
           ${{github.workspace}}\*.dacpac
@@ -46,12 +46,12 @@ jobs:
     runs-on: db
     needs: [build]
     steps:
-    - name: Create Dir
-      run : New-Item -Path ${{github.workspace}}\drop -ItemType Directory
+#    - name: Create Dir
+#      run : New-Item -Path ${{github.workspace}}\drop -ItemType Directory
     - name: Download Build Artifact
       uses: actions/download-artifact@v2
       with:
-        name: PartsUnlimited
+        name: artifacts
         path: ${{github.workspace}}\drop
  #   - name: Restore the database
  #     run: |
