@@ -45,7 +45,7 @@ jobs:
       uses: actions/checkout@v2    
     - name: Restore the database
       run: |
-         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\pul.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
+         & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
     - name: Download Build Artifact
       uses: actions/download-artifact@v2
       with:
