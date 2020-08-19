@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ d ]
 
 env:
   server_name: GANGAVALI\SQLEXPRESS
@@ -52,10 +52,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: artifacts
-        path: ${{github.workspace}}\drop
+        path: ${{github.workspace}}
  #   - name: Restore the database
  #     run: |
- #        & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\drop\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
+ #        & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Publish /SourceFile:${{github.workspace}}\partsunlimited.dacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /su:${{env.db_user}} /sp:${{ secrets.db_password }}
     
 #    - name: Extract Artifact
 #      run: expand-archive -path '*.zip' -destinationpath '.\webapp'
