@@ -40,7 +40,7 @@ jobs:
         name: artifacts
         path: |
           ${{github.workspace}}\stagingdir
-          ${{github.workspace}}\*.dacpac
+          ${{github.workspace}}\*.bacpac
   
   Database:
     runs-on: db
@@ -53,6 +53,7 @@ jobs:
         path: ${{github.workspace}}
     - name: list
       run : ls ${{github.workspace}}
+      
     - name: list1
       run : ls ${{github.workspace}}\stagingdir
     - name: Restore the database
@@ -60,7 +61,7 @@ jobs:
          & 'C:\Program Files\sqlpackage-win7-x64-en-US-15.0.4826.1\sqlpackage.exe' /Action:Import /sf:${{github.workspace}}\partsunlimited.bacpac /tsn:${{env.server_name}} /tdn:${{env.database}} /tu:${{env.db_user}} /tp:${{ secrets.db_password }}
     
     - name: Extract Artifact
-      run: expand-archive -path ${{github.workspace}}\*.zip -destinationpath '.\webapp'
+      run: expand-archive -path ${{github.workspace}}\stagingdir\*.zip -destinationpath '.\webapp'
 #      shell: pwsh
  # deploy:
  #   name: DEPLOY TO AZURE WEB APP
