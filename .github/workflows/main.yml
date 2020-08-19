@@ -28,7 +28,7 @@ jobs:
     - name: Nuget Restore
       run: nuget restore
       
-    - name: Buils the Project
+    - name: Build the Project
       run: |
         msbuild PartsUnlimited.sln /p:TransformWebConfigEnabled=False /p:AutoParameterizationWebConfigConnectionStrings=False /p:Configuration=Release /p:Platform='Any CPU' /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="${{github.workspace}}\stagingdir" 
     
