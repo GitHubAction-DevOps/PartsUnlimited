@@ -44,6 +44,7 @@ jobs:
   
   Database:
     runs-on: db
+    needs: [build]
     steps:
     - name: Create Dir
       run : New-Item -Path ${{github.workspace}}\drop -ItemType Directory
