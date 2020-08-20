@@ -68,7 +68,7 @@ jobs:
     
     - name: Run Powershell
       run: |
-        & '${{github.workspace}}\app_pool.ps1' -pool_name ${{env.app_pool_name}} -app_name ${{env.app_name}} -workspace ${{github.workspace}} -packagepath ${{env.PACKAGE_TEMP_PATH}}
+        & ${{github.workspace}}\app_pool.ps1 -pool_name ${{env.app_pool_name}} -app_name ${{env.app_name}} -workspace ${{github.workspace}} -packagepath ${{env.PACKAGE_TEMP_PATH}}
       shell: pwsh     
 #    - name: Create App pool
 #      run: New-WebAppPool -Name ${{env.app_pool_name}} -Force
