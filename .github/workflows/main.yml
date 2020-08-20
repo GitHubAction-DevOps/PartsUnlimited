@@ -68,7 +68,7 @@ jobs:
     
     - name: Create website
       run: New-Website -Name partsunlimited -ApplicationPool partspool -Force -PhysicalPath ${{github.workspace}}\webapp\${{env.PACKAGE_TEMP_PATH}} -Port 8082
-      shell: pwsh
+#      shell: pwsh
  # deploy:
  #   name: DEPLOY TO AZURE WEB APP
  #   runs-on: windows-latest
