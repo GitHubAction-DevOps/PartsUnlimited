@@ -6,9 +6,11 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master ]
+    branches: [ master1 ]
 
 env:
+  app_pool_name: partspool
+  app_name: partsunlimited
   server_name: GANGAVALI\SQLEXPRESS
   database: partsunlimited
   db_user: akshay
@@ -64,7 +66,7 @@ jobs:
       run: expand-archive -path ${{github.workspace}}\stagingdir\*.zip -destinationpath '.\webapp'
     
     - name: Create App pool
-      run: New-WebAppPool -Name partspool -Force
+      run: New-WebAppPool -Name ${{env.app_pool_name}} -Force
     
     - name: Create website
       run: New-Website -Name partsunlimited -ApplicationPool partspool -Force -PhysicalPath ${{github.workspace}}\webapp\${{env.PACKAGE_TEMP_PATH}} -Port 8082
