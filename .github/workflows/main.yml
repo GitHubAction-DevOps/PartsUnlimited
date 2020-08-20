@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master1 ]
+    branches: [ master ]
 
 env:
   app_pool_name: partspool
@@ -43,6 +43,7 @@ jobs:
         path: |
           ${{github.workspace}}\stagingdir
           ${{github.workspace}}\*.bacpac
+          ${{github.workspace}}\*.ps1
   
   Database:
     runs-on: db
@@ -65,11 +66,14 @@ jobs:
     - name: Extract Artifact
       run: expand-archive -path ${{github.workspace}}\stagingdir\*.zip -destinationpath '.\webapp'
     
-    - name: Create App pool
-      run: New-WebAppPool -Name ${{env.app_pool_name}} -Force
+    - name: Run Powershell
+      run: .\${{github.workspace}}\app_pool.ps1 -pool_name ${{env.app_pool_name}} -app_name ${{env.app_name}} -workspace ${{github.workspace}} -packagepath ${{env.PACKAGE_TEMP_PATH}}
+          
+#    - name: Create App pool
+#      run: New-WebAppPool -Name ${{env.app_pool_name}} -Force
     
-    - name: Create website
-      run: New-Website -Name partsunlimited -ApplicationPool partspool -Force -PhysicalPath ${{github.workspace}}\webapp\${{env.PACKAGE_TEMP_PATH}} -Port 8082
+#    - name: Create website
+#      run: New-Website -Name partsunlimited -ApplicationPool partspool -Force -PhysicalPath ${{github.workspace}}\webapp\${{env.PACKAGE_TEMP_PATH}} -Port 8082
 #      shell: pwsh
  # deploy:
  #   name: DEPLOY TO AZURE WEB APP
